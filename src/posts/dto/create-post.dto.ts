@@ -8,5 +8,6 @@ export class CreatePostDto {
   @ApiProperty({ example: 'Content', description: 'Content part' })
   @IsString({ message: 'Must be string' })
   readonly content: string
+  @ApiProperty({ example: '11', description: 'Unique User id' })
   readonly userId: number
 }

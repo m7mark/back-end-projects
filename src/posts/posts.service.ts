@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { FilesService } from 'src/files/files.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -11,7 +11,11 @@ export class PostsService {
 
   async create(dto: CreatePostDto, image: any) {
     const fileName = await this.filesService.createFile(image)
-    const post = await this.postRepository.create({ ...dto, image: fileName })
-    return post
+    try {
+      const post = await this.postRepository.create({ ...dto, image: fileName })
+      return post
+    } catch {
+      throw new HttpException('Title must be unique', HttpStatus.PRECONDITION_FAILED)
+    }
   }
 }

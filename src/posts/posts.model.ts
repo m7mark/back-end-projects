@@ -15,7 +15,7 @@ export class Posts extends Model<Posts, PostsCreationAttributes> {
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;
 
-  @ApiProperty({ example: 'example@email.com', description: 'Title' })
+  @ApiProperty({ example: 'Title', description: 'Title' })
   @Column({ type: DataType.STRING, unique: true, allowNull: false })
   title: string;
 
@@ -23,7 +23,7 @@ export class Posts extends Model<Posts, PostsCreationAttributes> {
   @Column({ type: DataType.STRING, allowNull: false })
   content: string;
 
-  @ApiProperty({ example: 'Bad situation', description: 'Image path' })
+  @ApiProperty({ example: '1.jpg', description: 'Image file name' })
   @Column({ type: DataType.STRING, allowNull: true })
   image: string;
 
